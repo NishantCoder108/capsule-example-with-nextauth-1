@@ -43,11 +43,7 @@ export default function SignIn() {
   }, []);
 
   const handleCapsuleSetup = async () => {
-    console.log("handleCapsuleSetup");
     try {
-      // const { isComplete, isError } = await capsule.waitForLoginAndSetup();
-      // console.log("isComplete", isComplete, isError);
-      // if (isComplete && !isError) {
       const { data } = await capsule.userSetupAfterLogin();
 
       const serializedSession = await capsule.exportSession();
@@ -63,7 +59,6 @@ export default function SignIn() {
       } else if (result?.ok) {
         router.push("/");
       }
-      // }
     } catch (error) {
       console.error("Error during Capsule setup:", error);
     }

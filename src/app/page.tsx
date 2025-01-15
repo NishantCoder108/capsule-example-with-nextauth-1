@@ -10,7 +10,6 @@ export default async function Home() {
 
   if (session?.user) {
     void api.post.getLatest.prefetch();
-    console.log("session", session);
   }
 
   return (

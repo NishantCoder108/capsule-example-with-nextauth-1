@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { capsule } from "~/lib/capsule";
 import "@usecapsule/react-sdk/styles.css";
-import { OAuthMethod } from "@usecapsule/react-sdk";
+import { ExternalWallet, OAuthMethod } from "@usecapsule/react-sdk";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 const CapsuleModal = dynamic(
@@ -46,6 +46,7 @@ export default function SignIn() {
     try {
       const { data } = await capsule.userSetupAfterLogin();
 
+      console.log("User setup after login:", data);
       const serializedSession = await capsule.exportSession();
       const email = capsule.getEmail();
       const result = await signIn("capsule", {
